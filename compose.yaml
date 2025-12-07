@@ -27,7 +27,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PEERS=twinkcentre,github_deploy_infra
+      - PEERS=twinkcentre,githubDeployInfra
       - PERSISTENTKEEPALIVE_PEERS=all
     volumes:
       - wireguard_config:/config
