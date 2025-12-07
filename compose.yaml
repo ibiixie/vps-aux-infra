@@ -2,7 +2,7 @@ services:
   caddy:
     build:
       context: ./caddy
-      no_cache: true # Ensure Caddy config is up-to-date
+      no_cache: true
     restart: always
     cap_add:
       - NET_ADMIN
@@ -27,23 +27,14 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      # - SERVERURL=wireguard.domain.com #optional
-      # - SERVERPORT=51820 #optional
-      - PEERS=twinkcentre #optional
-      # - PEERDNS=auto #optional
-      # - INTERNAL_SUBNET=10.13.13.0 #optional
-      # - ALLOWEDIPS=0.0.0.0/0 #optional
-      - PERSISTENTKEEPALIVE_PEERS=all #optional
-      # - LOG_CONFS=true #optional
+      - PEERS=twinkcentre,github_deploy_infra
+      - PERSISTENTKEEPALIVE_PEERS=all
     volumes:
       - wireguard_config:/config
-      # - /lib/modules:/lib/modules #optional
     ports:
       - 51820:51820/udp
     networks:
       - tunnel_net
-    # sysctls:
-    #   - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
 
   whoami:
