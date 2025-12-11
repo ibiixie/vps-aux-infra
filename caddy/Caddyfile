@@ -16,10 +16,8 @@ www.{$DOMAIN:localhost} {
 }
 
 
-{$DOMAIN_PERSONAL}::443 {
-	tls {
-		email {$EMAIL_PERSONAL}
-	}
+{$DOMAIN_PERSONAL} {
+	tls {$EMAIL_PERSONAL}
 	
 	route {
 		# reverse_proxy wireguard:80
