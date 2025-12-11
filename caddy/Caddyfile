@@ -21,7 +21,8 @@ www.{$DOMAIN:localhost} {
 	
 	# reverse_proxy wireguard:80
 	# reverse_proxy whoami:80
-	respond "Välkommen till klinden.se!" 418
+	reverse_proxy /whoami whoami:80
+	respond "Välkommen till klinden.se!"
 }
 
 # WWW redirect
