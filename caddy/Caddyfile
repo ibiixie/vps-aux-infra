@@ -16,10 +16,12 @@ www.{$DOMAIN:localhost} {
 }
 
 {$DOMAIN_PERSONAL} {
-	# tls {$EMAIL_PERSONAL}
+	tls {$EMAIL_PERSONAL}
 
-	reverse_proxy /whoami whoami:80
-	respond "Välkommen till klinden.se!"
+	route {
+		reverse_proxy /whoami whoami:80
+		respond "Välkommen till klinden.se!"
+	}
 }
 
 # WWW redirect
