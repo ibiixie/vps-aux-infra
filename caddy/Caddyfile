@@ -22,7 +22,8 @@ www.{$DOMAIN:localhost} {
 	}
 	
 	route {
-		reverse_proxy wireguard:80
+		# reverse_proxy wireguard:80
+		reverse_proxy whoami:80
 	}
 }
 
