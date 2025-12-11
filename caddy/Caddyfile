@@ -1,5 +1,5 @@
 {
-    email {$EMAIL}
+	email {$EMAIL}
 }
 
 {$DOMAIN:localhost} {
@@ -15,10 +15,9 @@ www.{$DOMAIN:localhost} {
 	redir {scheme}://{$DOMAIN:localhost}{uri}
 }
 
-
 {$DOMAIN_PERSONAL} {
-	tls {$EMAIL_PERSONAL}
-	
+	# tls {$EMAIL_PERSONAL}
+
 	# reverse_proxy wireguard:80
 	# reverse_proxy whoami:80
 	reverse_proxy /whoami whoami:80
