@@ -19,7 +19,7 @@ www.{$DOMAIN:localhost} {
 	tls {$EMAIL_PERSONAL}
 
 	route {
-		reverse_proxy wireguard:51820
+		reverse_proxy 10.13.13.2:80
 	}
 }
 
