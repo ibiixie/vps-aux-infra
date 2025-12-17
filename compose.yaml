@@ -11,7 +11,7 @@ services:
       - "80:80"
       - "443:443"
       - "443:443/udp"
-      - 51820:51820/udp
+      - 51820:51820/udp # wg uses service:caddy net mode
     volumes:
       - caddy_data:/data
       - caddy_config:/config
@@ -19,6 +19,16 @@ services:
       - proxy_net
       - tunnel_net
 
+  anubis:
+    image: ghcr.io/techarohq/anubix:latest
+    pull_policy: always
+    environment:
+      BIND: ":3000"
+      TARGET: http://caddy:81
+    networks:
+      - tunnel_net
+      - proxy_net
+ 
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
     container_name: wireguard
@@ -32,11 +42,6 @@ services:
       - PERSISTENTKEEPALIVE_PEERS=all
     volumes:
       - wireguard_config:/config
-    # ports:
-    #   - 51820:51820/udp
-    #   - 80:80
-    #   - 443:443
-    #   - 443:443/udp
     network_mode: service:caddy
     restart: unless-stopped
 
