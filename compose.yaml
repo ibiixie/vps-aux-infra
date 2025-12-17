@@ -7,10 +7,10 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    #   - "443:443/udp"
     volumes:
       - caddy_data:/data
       - caddy_config:/config
@@ -33,6 +33,9 @@ services:
       - wireguard_config:/config
     ports:
       - 51820:51820/udp
+      - 80:80
+      - 443:443
+      - 443:443/udp
     network_mode: service:caddy
     restart: unless-stopped
 
