@@ -6,16 +6,18 @@ services:
     restart: always
     cap_add:
       - NET_ADMIN
+      - SYS_MODULES
     ports:
-    - "80:80"
-    - "443:443"
-    - "443:443/udp"
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
     volumes:
       - caddy_data:/data
       - caddy_config:/config
     networks:
       - proxy_net
       - tunnel_net
+    network_mode: host
 
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
@@ -26,7 +28,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PEERS=twinkcentre,githubDeployInfra
+      - PEERS=twinkcentre
       - PERSISTENTKEEPALIVE_PEERS=all
     volumes:
       - wireguard_config:/config
@@ -34,6 +36,7 @@ services:
       - 51820:51820/udp
     networks:
       - tunnel_net
+    network_mode: host
     restart: unless-stopped
 
 volumes:
