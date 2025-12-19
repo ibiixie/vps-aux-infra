@@ -26,9 +26,8 @@ www.{$DOMAIN:localhost} {
 }
 
 # Actual website entrypoint
-{$DOMAIN_PERSONAL}:81 {
-# 	tls {$EMAIL_PERSONAL}
-
+http://{$DOMAIN_PERSONAL}:81 {
+	
 	route {
 		reverse_proxy 10.13.13.2:80
 	}
