@@ -36,6 +36,8 @@ http://{$DOMAIN_PERSONAL}:81, http://*.{$DOMAIN_PERSONAL}:81 {
 }
 
 login.{$DOMAIN_PERSONAL}, secret.{$DOMAIN_PERSONAL} {
+	tls {$EMAIL_PERSONAL}
+
 	reverse_proxy 10.13.13.2:80
 }
 
