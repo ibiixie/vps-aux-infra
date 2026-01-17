@@ -62,7 +62,7 @@ www.{$DOMAIN_PERSONAL} {
 }
 
 # Actual website entrypoint
-http://{$DOMAIN_PERSONAL}:81, http://*.{$DOMAIN_PERSONAL}:81 {
+http://{$DOMAIN_PERSONAL}:81, http://*.{$DOMAIN_PERSONAL}:81, http://git.{$DOMAIN}:81 {
 	reverse_proxy 10.13.13.2:80 {
 		header_up X-Forwarded-Proto {http.request.header.X-Forwarded-Proto}
 		header_up X-Forwarded-Host {http.request.header.X-Forwarded-Host}
