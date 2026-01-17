@@ -1,5 +1,6 @@
 services:
   caddy:
+    container_name: caddy
     build:
       context: ./caddy
       no_cache: true
@@ -20,6 +21,7 @@ services:
       - tunnel_net
 
   anubis:
+    container_name: anubis
     build:
       context: ./anubis
       no_cache: true
