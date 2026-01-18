@@ -14,6 +14,13 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
 
+      # Building Caddy with the Layer 4 module requires a newer
+      # version of go than is provided by default so we fix that here.
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.25"
+
       - name: Deploy Stack
         uses: cssnr/stack-deploy-action@v1
         with:
