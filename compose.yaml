@@ -9,6 +9,7 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     ports:
+      - "222:222" # SSH proxying
       - "80:80"
       - "443:443"
       - "443:443/udp"
