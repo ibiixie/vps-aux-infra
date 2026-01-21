@@ -1,14 +1,5 @@
 {
 	email {$EMAIL}
-
-	layer4 {
-		git.{$DOMAIN}:222 {
-			@ssh ssh
-			route @ssh {
-				proxy 10.13.13.2:222
-			}
-		}
-	}
 }
 
 {$DOMAIN:localhost} {

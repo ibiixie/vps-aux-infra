@@ -9,7 +9,6 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     ports:
-      - "222:222" # SSH proxying
       - "80:80"
       - "443:443"
       - "443:443/udp"
@@ -20,6 +19,15 @@ services:
     networks:
       - proxy_net
       - tunnel_net
+
+  haproxy:
+    container_name: haproxy
+    build:
+      context: ./haproxy
+      no_cache: true
+    restart: unless-stopped
+    ports:
+      222:222
 
   anubis:
     container_name: anubis
