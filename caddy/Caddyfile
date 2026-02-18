@@ -56,6 +56,16 @@ wallos.{$DOMAIN_PERSONAL} {
 
 }
 
+rss.{$DOMAIN_PERSONAL} {
+	tls {$EMAIL_PERSONAL}
+
+	reverse_proxy 10.13.13.2:80 {
+		header_up X-Forwarded-Proto {http.request.header.X-Forwarded-Proto}
+		header_up X-Forwarded-Host {http.request.header.X-Forwarded-Host}
+		header_up X-Http-Version {http.request.header-X-Http-Version}
+	}
+}
+
 # WWW redirect
 www.{$DOMAIN_PERSONAL} {
 	redir {scheme}://{$DOMAIN_PERSONAL}{uri}
