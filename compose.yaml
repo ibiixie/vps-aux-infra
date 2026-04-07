@@ -48,6 +48,9 @@ services:
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
     container_name: wireguard
+    environment:
+      WG_HOST: wg-easy.${DOMAIN}
+      PASSWORD: ${WG_EASY_PASSWORD}
     cap_add:
       - NET_ADMIN
     environment:
