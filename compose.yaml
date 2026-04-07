@@ -67,6 +67,7 @@ services:
     environment:
       WG_HOST: wg-easy.${DOMAIN}
       PASSWORD: ${WG_EASY_PASSWORD}
+      PORT: 80
     networks:
       wg-easy_net:
         ipv4_address: 10.42.42.42
