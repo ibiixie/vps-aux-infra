@@ -61,6 +61,30 @@ services:
     network_mode: service:caddy
     restart: unless-stopped
 
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy:15
+    container_name: wg-easy
+    networks:
+      wg-easy_net:
+        ipv4_address: 10.42.42.42
+        ipv6_address: fdcc:ad94:bacf:61a3::2a
+      volumes:
+        - etc_wireguard:/etc/wireguard
+        - /lib/modules:/lib/modules:ro
+      ports:
+        - "51830:51820/udp"
+        - "51831:51821/tcp"
+      restart: unless-stopped
+      cap_add:
+        - NET_ADMIN
+        - SYS_MODULE
+      sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.default.forwarding=1
+
 volumes:
   caddy_data:
   caddy_config:
@@ -71,3 +95,12 @@ networks:
     name: proxy_net
   tunnel_net:
     name: tunnel_net
+  wg-easy_net:
+    driver: bridge
+    name: wg-easy_net
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.42.42.0/24
+        - subnet: fdcc:ad94:bacf:61a3::/64
