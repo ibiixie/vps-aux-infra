@@ -27,5 +27,6 @@ jobs:
         env:
           CADDY_EMAIL: ${{ secrets.CADDY_EMAIL }}
           CADDY_EMAIL_PERSONAL: ${{ secrets.CADDY_EMAIL_PERSONAL }}
+          DOMAIN: ${{ secrets.DOMAIN }}
           DOMAIN_PERSONAL: ${{ secrets.DOMAIN_PERSONAL }}
           WG_EASY_PASSWORD: ${{ secrets.WG_EASY_PASSWORD }}
