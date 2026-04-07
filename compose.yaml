@@ -48,9 +48,6 @@ services:
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
     container_name: wireguard
-    environment:
-      WG_HOST: wg-easy.${DOMAIN}
-      PASSWORD: ${WG_EASY_PASSWORD}
     cap_add:
       - NET_ADMIN
     environment:
@@ -67,6 +64,9 @@ services:
   wg-easy:
     image: ghcr.io/wg-easy/wg-easy:15
     container_name: wg-easy
+    environment:
+      WG_HOST: wg-easy.${DOMAIN}
+      PASSWORD: ${WG_EASY_PASSWORD}
     networks:
       wg-easy_net:
         ipv4_address: 10.42.42.42
