@@ -89,6 +89,7 @@ volumes:
   caddy_data:
   caddy_config:
   wireguard_config:
+  etc_wireguard:
 
 networks:
   proxy_net:
