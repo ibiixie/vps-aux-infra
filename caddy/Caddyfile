@@ -10,8 +10,9 @@
 	}
 }
 
-vpn.{$DOMAIN} {
+wg-easy.{$DOMAIN} {
 	reverse_proxy wg-easy:80
+	tls internal
 }
 
 git.{$DOMAIN} {
